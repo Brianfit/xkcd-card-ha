@@ -2,5 +2,5 @@
     "name": "xkcd-card",
     "render_readme": true,
     "filename": "xkcd-card.js",
-    "content_in_root": false
+    "content_in_root": true
 }
