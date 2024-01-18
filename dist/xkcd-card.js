@@ -18,6 +18,7 @@ class XKCDcard extends HTMLElement {
             this.content = this.querySelector('#content');
         }
         const imageUrl = `/local/community/xkcd-card/xkcd.png?_ts=${new Date().getTime()}`;
+        console.log('Yes Slothrop...')
         this.content.innerHTML = `<br /><img src="${imageUrl}" style="width: 100%;"><br />`;
     }
 
