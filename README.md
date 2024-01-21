@@ -19,7 +19,7 @@ Good news is it's easy. Here's how to do it. When the card installs, it creates 
 You'll want to run that every 24 hours to get the latest comic. First, open up your configuration.yaml and add the following code:
 
         `shell_command:
-           run_xkcd: "sh /local/community/xkcd-card-ha/xkcd.sh"`
+           run_xkcd: "sh /config/www/community/xkcd-card-ha/xkcd.sh"`
 
 The file is actually in your /config/www/community/xkcd-card-ha directory, but in a normal install that's read by Home Assitant from the alias /local/
 
