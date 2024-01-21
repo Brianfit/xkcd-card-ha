@@ -19,9 +19,9 @@ Good news is it's easy. Here's how to do it. When the card installs, it creates 
 You'll want to run that every 24 hours to get the latest comic. First, open up your configuration.yaml and add the following code:
 
         `shell_command:
-           run_xkcd: "sh /local/xkcd-card/xkcd.sh"`
+           run_xkcd: "sh /local/community/xkcd-card-ha/xkcd.sh"`
 
-The file is actually in your /config/www directory, but in a normal install that's read by Home Assitant from the alias /local/
+The file is actually in your /config/www/community/xkcd-card-ha directory, but in a normal install that's read by Home Assitant from the alias /local/
 
 > [!IMPORTANT]
 > Go to the Developers menu, click on "Check Configuration" and "Restart Home Assistant" (Really restart it, don't just reload the YAML. You're creating a new entity, and you won't have access to it until you restart Home Assistant.)
@@ -44,14 +44,14 @@ Choose "Time"
 
 <img src = "https://github.com/Brianfit/images/blob/main/time.jpg" height="50%" width="50%">
 
-And set it up to run `shell_command.run_xkcd` once a day at any time you choose.
+And set it up to run `shell_command.run_xkcd` once a day at 11:57 p.m. -- or any time just before midnight when the date changes. 
 
 <img src = "https://github.com/Brianfit/images/blob/main/automation.jpg" height="75%" width="75%">
 
 
-Every day at the time you specify, the image xkcd.png and json data of the alt text and title will download to the /config/local/xkcd-card/ directory 
+Every day at the time you specify, the image xkcd.png and json data of the alt text and title will download to the /config/local/commmunity/xkcd-card-ha/ directory 
+And at midnight, since the date changes, the url of the image changes. And voila! A fresh giggle. 
 
-The card will then access it from the url /local/xkcd-card/ and voila! Your daily nerdgasm. 
 
 > [!NOTE]
 > Mouseover the comic to see the alt-text below the image
