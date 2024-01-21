@@ -53,9 +53,6 @@ Every day at the time you specify, the image xkcd.png and json data of the alt t
 And at midnight, since the date changes, the url of the image changes. And voila! A fresh giggle. 
 
 
-> [!NOTE]
-> Mouseover the comic to see the alt-text below the image
-
 ## Credits
 
 xkcd is created by Randall Munroe, and like this HACS Card the comic carries a Creative Commons BY NC license - meaning you are free to share provided attribution is made and the work is not used for commercial purposes. 
