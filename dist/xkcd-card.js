@@ -9,6 +9,24 @@ class XKCDcard extends HTMLElement {
     }
 
 
+    // Initialize a variable to store the date when the script is loaded
+let lastFetchDate = new Date().getDate();
+
+function getImageUrl() {
+    const currentDate = new Date().getDate();
+
+    // Check if the current date is different from the last fetch date
+    if (currentDate !== lastFetchDate) {
+        lastFetchDate = currentDate; // Update the last fetch date
+        // Fetch and update the image URL with the current date
+        return `/local/community/xkcd-card-ha/xkcd.png?_ts=${currentDate}`;
+    } else {
+        // If the dates are the same, no need to update the image
+        return `/local/community/xkcd-card-ha/xkcd.png?_ts=${lastFetchDate}`;
+    }
+}
+
+
     set hass(hass) {
         if (!this.content) {
             this.innerHTML = `
@@ -17,8 +35,7 @@ class XKCDcard extends HTMLElement {
                 </ha-card>`;
             this.content = this.querySelector('#content');
         }
-        const imageUrl = `/local/community/xkcd-card-ha/xkcd.png?_ts=${new Date().getDate()}`;
-        console.log('Yes Slothrop...')
+        const imageUrl = getImageUrl();
         this.content.innerHTML = `<br /><img src="${imageUrl}" style="width: 100%;"><br />`;
     }
 
