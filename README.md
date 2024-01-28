@@ -21,7 +21,6 @@ You'll want to run that every 24 hours to get the latest comic. First, open up y
         `shell_command:
            run_xkcd: "sh /config/www/community/xkcd-card-ha/xkcd.sh"`
 
-[ NB: that's the default install locaion for a HACS card and should work 99.999% of the time. It's also possible to copy the file xkcd.sh from this repository and place it in /config/www/ and simply configure the run command above to execute from its alias, /local/xkcd.sh ]
 
 > [!IMPORTANT]
 > Go to the Developers menu, click on "Check Configuration" and "Restart Home Assistant" (Really restart it, don't just reload the YAML. You're creating a new entity, and you won't have access to it until you restart Home Assistant. If you're superstitious, go ahead and reboot, you'll feel better.)
