@@ -9,6 +9,12 @@ class XKCDcard extends HTMLElement {
         this.config = config;
     }
 
+    async fetchData() {
+        const response = await fetch('./xkcd_data.json');
+        const data = await response.json();
+        return data;
+    }
+
     // Method to get the image URL
     getImageUrl() {
         const currentDate = new Date().getDate();
@@ -24,7 +30,7 @@ class XKCDcard extends HTMLElement {
         }
     }
 
-    set hass(hass) {
+    async set hass(hass) {
         if (!this.content) {
             this.innerHTML = `
                 <ha-card>
@@ -32,9 +38,19 @@ class XKCDcard extends HTMLElement {
                 </ha-card>`;
             this.content = this.querySelector('#content');
         }
+
         const imageUrl = this.getImageUrl(); // Call getImageUrl as a method of this class
-        this.content.innerHTML = `<br /><img src="${imageUrl}" style="width: 100%;"><br />`;
+        const data = await this.fetchData(); // Fetch the JSON data
+
+        // Update the content to include the ALT text
+        this.content.innerHTML = `
+            <br />
+            <img src="${imageUrl}" style="width: 100%;">
+            <br />
+            <p>${data.alt_text}</p> <!-- Display the ALT text here -->
+        `;
     }
+
 
     getCardSize() {
         return 3;
