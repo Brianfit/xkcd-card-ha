@@ -14,7 +14,7 @@ Get it? If you read XKCD, you probably do. If not, it doesn't matter. Just imagi
 > [!IMPORTANT]
 > <strong> If you just install the card, you'll only see the default comic. Every day. I mean it's a good one, but if you want to see it refresh, you need to create an automation! </strong>
 
-Good news is it's easy. Here's how to do it. When the card installs, it creates a file called xkcd.sh
+Good news is it's easy. When the card installs, it creates a file called xkcd.sh
 
 You'll want to run that every 24 hours to get the latest comic. First, open up your configuration.yaml and add the following code:
 
