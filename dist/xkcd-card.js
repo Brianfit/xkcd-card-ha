@@ -35,17 +35,7 @@ class XKCDcard extends HTMLElement {
         const data = await this.fetchData(); // Fetch the JSON data
 
         // Update the content to include the ALT text
-        this.content.innerHTML = `
-            <br />
-            <img src="${imageUrl}" style="width: 100%;">
-            <br />
-            <p>Alt Text: ${data.alt_text}</p> <!-- Display the ALT text here -->
-        `;
-    }
-
-    set hass(hass) {
-        if (!this.content) {
-            this.innerHTML = `<style>
+        this.content.innerHTML = `<style>
                 .alt-text {
                     visibility: hidden;
                     color: black;
@@ -66,7 +56,15 @@ class XKCDcard extends HTMLElement {
             <div class="image-container" style="position: relative; cursor: pointer;">
                 <img src="${imageUrl}" style="width: 100%;">
                 <div class="alt-text">${data.alt_text}</div>
-            </div>`;
+            </div>
+        `;
+    }
+
+    set hass(hass) {
+        if (!this.content) {
+            this.innerHTML = `<ha-card>
+                    <div id="content"></div>
+                </ha-card>`;
             this.content = this.querySelector('#content');
         }
 
