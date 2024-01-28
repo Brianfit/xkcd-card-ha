@@ -49,7 +49,7 @@ And set it up to run `shell_command.run_xkcd` once a day at 11:57 p.m. -- or any
 
 
 Every day at the time you specify, the image xkcd.png and json data of the alt text and title will download to the /config/local/commmunity/xkcd-card-ha/ directory 
-And at midnight, since the date changes, the url of the image changes. And voila! A fresh giggle. 
+And at midnight, since the date changes, the url of the image changes. And voila! A fresh giggle. Mouseover or touch/click the image to see the alt text. 
 
 
 ## Credits
