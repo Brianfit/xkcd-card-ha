@@ -10,7 +10,7 @@ class XKCDcard extends HTMLElement {
     }
 
     async fetchData() {
-        const response = await fetch('./xkcd_data.json');
+        const response = await fetch('/local/community/xkcd-card-ha/xkcd_data.json');
         const data = await response.json();
         return data;
     }
@@ -39,7 +39,7 @@ class XKCDcard extends HTMLElement {
             <br />
             <img src="${imageUrl}" style="width: 100%;">
             <br />
-            <p>${data.alt_text}</p> <!-- Display the ALT text here -->
+            <p>Alt Text: ${data.alt_text}</p> <!-- Display the ALT text here -->
         `;
     }
 
