@@ -45,10 +45,28 @@ class XKCDcard extends HTMLElement {
 
     set hass(hass) {
         if (!this.content) {
-            this.innerHTML = `
-                <ha-card>
-                    <div id="content"></div>
-                </ha-card>`;
+            this.innerHTML = `<style>
+                .alt-text {
+                    visibility: hidden;
+                    color: black;
+                    text-align: center;
+                    padding: 5px 0;
+                    position: absolute;
+                    bottom: 10px;
+                    width: 100%;
+                    background: rgba(255, 255, 255, 0.7);
+                    transition: visibility 0.2s, opacity 0.2s linear;
+                }
+
+                .image-container:hover .alt-text {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            </style>
+            <div class="image-container" style="position: relative; cursor: pointer;">
+                <img src="${imageUrl}" style="width: 100%;">
+                <div class="alt-text">${data.alt_text}</div>
+            </div>`;
             this.content = this.querySelector('#content');
         }
 
