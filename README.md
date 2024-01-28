@@ -7,7 +7,7 @@ This pulls the latest awesome xkcd comic into your Home Assistant dashboard.
         const imageUrl = `/local/community/xkcd-card-ha/xkcd.png?_ts=${new Date()}`;
         this.content.innerHTML = `<img src="${imageUrl}" style="width: 100%;">`;
 
-Get it? If not, it doesn't matter. Just think of it as the magic spell that the card is chanting in the middle of the night to summon your next dose of nerdy goodness. (But if you read xkcd, you probably get it.) 
+Get it? If you read XKCD, you probably do. If not, it doesn't matter. Just imagine a stick figure in a wizard's hat chanting a magic spell in the middle of the night to summon your next dose of nerdy goodness. 
 
 ## Installation
 
@@ -21,10 +21,10 @@ You'll want to run that every 24 hours to get the latest comic. First, open up y
         `shell_command:
            run_xkcd: "sh /config/www/community/xkcd-card-ha/xkcd.sh"`
 
-The file is actually in your /config/www/community/xkcd-card-ha directory, but in a normal install that's read by Home Assitant from the alias /local/
+[ NB: that's the default install locaion for a HACS card and should work 99.999% of the time. It's also possible to copy the file xkcd.sh from this repository and place it in /config/www/ and simply configure the run command above to execute from its alias, /local/xkcd.sh ]
 
 > [!IMPORTANT]
-> Go to the Developers menu, click on "Check Configuration" and "Restart Home Assistant" (Really restart it, don't just reload the YAML. You're creating a new entity, and you won't have access to it until you restart Home Assistant.)
+> Go to the Developers menu, click on "Check Configuration" and "Restart Home Assistant" (Really restart it, don't just reload the YAML. You're creating a new entity, and you won't have access to it until you restart Home Assistant. If you're superstitious, go ahead and reboot, you'll feel better.)
 
 ### Set up your automation
 
