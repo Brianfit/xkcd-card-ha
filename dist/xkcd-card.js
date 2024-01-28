@@ -30,15 +30,7 @@ class XKCDcard extends HTMLElement {
         }
     }
 
-    async set hass(hass) {
-        if (!this.content) {
-            this.innerHTML = `
-                <ha-card>
-                    <div id="content"></div>
-                </ha-card>`;
-            this.content = this.querySelector('#content');
-        }
-
+ async updateContent() {
         const imageUrl = this.getImageUrl(); // Call getImageUrl as a method of this class
         const data = await this.fetchData(); // Fetch the JSON data
 
@@ -49,6 +41,19 @@ class XKCDcard extends HTMLElement {
             <br />
             <p>${data.alt_text}</p> <!-- Display the ALT text here -->
         `;
+    }
+
+    set hass(hass) {
+        if (!this.content) {
+            this.innerHTML = `
+                <ha-card>
+                    <div id="content"></div>
+                </ha-card>`;
+            this.content = this.querySelector('#content');
+        }
+
+        // Call the asynchronous method to update the content
+        this.updateContent().catch(error => console.error('Failed to update content:', error));
     }
 
 
