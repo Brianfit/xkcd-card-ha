@@ -27,8 +27,8 @@ class XKCDcard extends HTMLElement {
             return `/local/community/xkcd-card-ha/xkcd.png?_ts=${currentDate}`;
         } else {
             // If the dates are the same, no need to update the image
-            return `/local/community/xkcd-card-ha/xkcd.png?_ts=${this.lastFetchDate}`;
             console.log('Dates differ');
+            return `/local/community/xkcd-card-ha/xkcd.png?_ts=${this.lastFetchDate}`;
         }
     }
 
@@ -75,7 +75,6 @@ class XKCDcard extends HTMLElement {
                 </ha-card>`;
             this.content = this.querySelector('#content');
              console.info(`%c XKCD-CARD-HA`, "color: white; font-weight: bold; background: purple");
-            console.log(imageUrl);
         }
 
         // Call the asynchronous method to update the content
