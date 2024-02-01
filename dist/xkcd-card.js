@@ -74,7 +74,6 @@ class XKCDcard extends HTMLElement {
                     <div id="content"></div>
                 </ha-card>`;
             this.content = this.querySelector('#content');
-             console.info(`%c XKCD-CARD-HA`, "color: white; font-weight: bold; background: purple");
         }
 
         // Call the asynchronous method to update the content
