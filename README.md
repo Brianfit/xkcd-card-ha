@@ -1,6 +1,6 @@
 # xkcd-card [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration) <a href="https://www.buymeacoffee.com/brianfit" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 25 px !important;width: 100px !important;" ></a>
 
-This pulls the latest awesome xkcd comic into your Home Assistant dashboard. 
+This pulls the latest awesome xkcd comic into your Home Assistant dashboard. New comics are published every Monday, Wednesday, and Friday. 
 
 "Why can't I just grab the image in a picture entity from the RSS feed" you ask?  Because browsers cache images, m'geek. It's normally a feature, but when you want to point to a file that gets refreshed regularly, it's a bug. We need to trick the browser into thinking it hasn't seen the url it's fetching the comic from, and we do that with this nifty trick, built right into the card:
 
@@ -63,7 +63,7 @@ Thanks also to u/lau1406 and the guys and gals in <a href="https://www.reddit.co
 <img src="https://imgs.xkcd.com/comics/copyright.jpg" alt="After reading Slashdot and BoingBoing, sometimes I just have to go outside" height="55%" width="55%">
 </p>
 This card was made by Brian Fitzgerald under a Creative Commons BY-NC license. You are free to use or modify the code under two conditions: you don't sell it and you mention I made it. 
-This card delivers content made by Randall Munroe under the same conditions. 
+This card delivers content made by Randall Munroe and published at xkcd.com under the same conditions. 
 
 [![License: CC BY-NC 4.0](https://licensebuttons.net/l/by-nc/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc/4.0/)
 
