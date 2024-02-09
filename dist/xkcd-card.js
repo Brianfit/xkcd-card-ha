@@ -32,39 +32,38 @@ class XKCDcard extends HTMLElement {
         }
     }
 
- async updateContent() {
-        const imageUrl = this.getImageUrl(); // Call getImageUrl as a method of this class
-        const data = await this.fetchData(); // Fetch the JSON data
+async updateContent() {
+    const data = await this.fetchData(); // Fetch the JSON data
+    const currentDate = new Date();
+    const uniqueTimestamp = currentDate.getTime(); // Unique timestamp as a more reliable cache buster
 
-        // Encode the ALT text as a URL parameter
-        const altTextParam = encodeURIComponent(data.alt_text);
+    // Use the fetched data directly rather than encoding it into the URL
+    const imageUrl = `/local/community/xkcd-card-ha/xkcd.png?_ts=${uniqueTimestamp}`;
 
-        // Update the content to include the image with the ALT text as a parameter
-        this.content.innerHTML = `
-            <style>
-                .alt-text {
-                    visibility: hidden;
-                    color: black;
-                    text-align: center;
-                    padding: 5px 0;
-                    position: absolute;
-                    bottom: 10px;
-                    width: 100%;
-                    background: rgba(255, 255, 255, 0.7);
-                    transition: visibility 0.2s, opacity 0.2s linear;
-                }
+    // Update the content to include the image and directly set the ALT text in the DOM
+    this.content.innerHTML = `
+        <style>
+            .alt-text {
+                display: none; // Initially hide the ALT text
+                color: black;
+                text-align: center;
+                padding: 5px 0;
+                position: absolute;
+                bottom: 10px;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.7);
+            }
 
-                .image-container:hover .alt-text {
-                    visibility: visible;
-                    opacity: 1;
-                }
-            </style>
-            <div class="image-container" style="position: relative; cursor: pointer;">
-                <img src="${imageUrl}&alt_text=${altTextParam}" style="width: 100%;" onload="this.nextElementSibling.innerHTML = decodeURIComponent(this.src.split('alt_text=')[1])">
-                <div class="alt-text"></div>
-            </div>
-        `;
-    }
+            .image-container:hover .alt-text {
+                display: block; // Show the ALT text on hover
+            }
+        </style>
+        <div class="image-container" style="position: relative; cursor: pointer;">
+            <img src="${imageUrl}" style="width: 100%;">
+            <div class="alt-text">${data.alt_text}</div> <!-- Directly inject the ALT text -->
+        </div>
+    `;
+}
 
 
  set hass(hass) {
