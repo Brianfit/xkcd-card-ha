@@ -1,6 +1,6 @@
 # xkcd-card [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration) <a href="https://www.buymeacoffee.com/brianfit" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 25 px !important;width: 100px !important;" ></a>
 
-This pulls the latest awesome xkcd comic into your Home Assistant dashboard. New comics are published every Monday, Wednesday, and Friday. 
+This pulls the latest awesome xkcd comic into your Home Assistant dashboard. New comics are published every Monday, Wednesday, and Friday. On other days, the card pulls a random comic from the archive. 
 
 "Why can't I just grab the image in a picture entity from the RSS feed" you ask?  Because browsers cache images, m'geek. It's normally a feature, but when you want to point to a file that gets refreshed regularly, it's a bug. We need to trick the browser into thinking it hasn't seen the url it's fetching the comic from, and we do that with this nifty trick, built right into the card:
 
