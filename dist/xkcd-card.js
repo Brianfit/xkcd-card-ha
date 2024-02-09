@@ -10,9 +10,10 @@ class XKCDcard extends HTMLElement {
     }
 
     async fetchData() {
-        const response = await fetch('/local/community/xkcd-card-ha/xkcd_data.json');
+        const response = await fetch('/local/community/xkcd-card-ha/xkcd_data.json', { cache: 'no-cache' });
         const data = await response.json();
         return data;
+        console.log(data);
     }
 
     // Method to get the image URL
