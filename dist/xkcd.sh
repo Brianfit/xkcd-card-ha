@@ -1,10 +1,20 @@
 #!/bin/bash
 
-# Directory where you want to save the image and JSON file
+# Since XKCD only posts new comics on Monday, Wednesday, and Friday we are going to pull random comics on the other days
+# Directory where we save the image and JSON file (HACS default)
 save_directory="/config/www/community/xkcd-card-ha/"
 
-# URL of the XKCD JSON
-url="https://xkcd.com/info.0.json"
+# Determine the day of the week
+day_of_week=$(date +%u) # +%u gives a numeric representation of the day of the week (1=Monday, ..., 7=Sunday)
+
+# Define the URL based on the day of the week
+if [[ "$day_of_week" == "2" || "$day_of_week" == "4" || "$day_of_week" == "6" || "$day_of_week" == "7" ]]; then
+    # Generate a random comic number between 1 and 2000
+    random_comic=$((1 + RANDOM % 2000))
+    url="https://xkcd.com/${random_comic}/info.0.json"
+else
+    url="https://xkcd.com/info.0.json"
+fi
 
 # Fetch the data
 data=$(curl -s $url)
@@ -33,3 +43,4 @@ echo $json_output > "${save_directory}xkcd_data.json"
 # Output the saved paths
 echo "Image saved to: $local_image_path"
 echo "JSON saved to: ${save_directory}xkcd_data.json"
+
