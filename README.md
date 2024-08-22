@@ -39,8 +39,9 @@ Scroll down and select Manual (you might need to search for it).
 
 Use the following YAML to configure the card:
 
-`type: 'custom:xkcd-card'
-Save your changes.`
+`type: 'custom:xkcd-card'`
+
+Save your changes.
 
 > [!IMPORTANT]
 > <strong> If you just install the card, you'll only see the default comic. Every day. I mean it's a good one, but if you want to see it refresh, you need to create an automation! </strong>
