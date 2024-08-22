@@ -11,7 +11,7 @@ Get it? If you read XKCD, you probably do. If not, it doesn't matter. Just imagi
 
 ## Installation
 
-Until this card gets approved as a default (I've been waiting 6 months now!) You'll need to install manually. To instll the card itself: 
+Until this card gets approved as a default (I've been waiting 6 months now!) You'll need to install as a custom card. To install the card itself: 
 
 Ensure HACS is Installed:
 If you haven’t already installed HACS (Home Assistant Community Store), you’ll need to do that first. But I’m assuming you’re good to go here.
