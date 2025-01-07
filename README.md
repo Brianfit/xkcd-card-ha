@@ -17,14 +17,16 @@ If you havenâ€™t already [installed HACS (Home Assistant Community Store), youâ€
 
 Add the Repository:
 Go to HACS, search on "xkcd' and click on the xkcd-card-ha plugin. Hit that download button: 
-<img src = "https://github.com/Brianfit/images/blob/main/install.jpg" style="width:75%; height:75%">
+
+<img src = "https://github.com/Brianfit/images/blob/main/install.jpg" style="width:75%; height:75%; margin-left:10%">
+
 Boom. The card has now been quantum transported into your instance of Home Assistant. 
 
 Edit your dashboard (Three dots upper right > Edit Dashboard)
 Click Add Card +
 Likely way down at the bottom of the card options, you'll see this: 
 
-<img src = "https://github.com/Brianfit/images/blob/main/cardoption.jpg" style="width:75%; height:75%">
+<img src = "https://github.com/Brianfit/images/blob/main/cardoption.jpg" style="width:75%; height:75%;margin-left:10%">
 
 Click on it. Click Done and you are. Kinda. See steps below to set up your automation. 
 
