@@ -24,7 +24,8 @@ Boom. The card has now been quantum transported into your instance of Home Assis
 
 Edit your dashboard (Three dots upper right > Edit Dashboard)
 Click Add Card +
-Likely way down at the bottom of the card options, you'll see this: 
+
+Way down at the bottom of the card options, you'll see this: 
 
 <img src = "https://github.com/Brianfit/images/blob/main/cardoption.jpg" style="width:75%; height:75%;margin-left:10%">
 
@@ -42,10 +43,10 @@ If you prefer to roll your own, you can use the following YAML to add and config
 Good news is it's easy. When the card installs, it creates a bash file called xkcd.sh to fetch a new comic & alt text. 
 
 You'll want to run that every 24 hours to get the latest comic. First, open up your configuration.yaml and add the following code:
-
-        `shell_command:
-           run_xkcd: "sh /config/www/community/xkcd-card-ha/xkcd.sh"`
-
+```
+        shell_command:
+          run_xkcd: "sh /config/www/community/xkcd-card-ha/xkcd.sh"
+```
 
 > [!IMPORTANT]
 > Go to the Developers menu, click on "Check Configuration" and "Restart Home Assistant" (Really restart it, don't just reload the YAML. You're creating a new entity, and you won't have access to it until you restart Home Assistant. If you're superstitious, go ahead and reboot, you'll feel better.)
