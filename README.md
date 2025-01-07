@@ -11,42 +11,33 @@ Get it? If you read XKCD, you probably do. If not, it doesn't matter. Just imagi
 
 ## Installation
 
-Until this card gets approved as a default (I've been waiting 6 months now!) You'll need to install as a custom card. To install the card itself: 
-
 Ensure HACS is Installed:
-If you haven’t already installed HACS (Home Assistant Community Store), you’ll need to do that first. But I’m assuming you’re good to go here.
+If you haven’t already [installed HACS (Home Assistant Community Store), you’ll need to do that first](https://www.hacs.xyz/docs/use/download/download/). But I’m assuming you’re good to go here.
+
 
 Add the Repository:
+Go to HACS, search on "xkcd' and click on the xkcd-card-ha plugin. Hit that download button: 
+<img src = "https://github.com/Brianfit/images/blob/main/install.jpg">
+Boom. The card has now been quantum transported into your instance of Home Assistant. 
 
-Go to your Home Assistant instance.
-Navigate to HACS in the sidebar.
-Click on Frontend.
-Click the three-dot menu in the top right and choose Custom repositories.
-Enter https://github.com/Brianfit/xkcd-card-ha in the repository URL field.
-Select Lovelace as the category.
-Hit Add.
-Install the XKCD Card:
+Edit your dashboard (Three dots upper right > Edit Dashboard)
+Click Add Card +
+Likely way down at the bottom of the card options, you'll see this: 
 
-After adding the repository, you should see it listed in the HACS frontend section.
-Click on the XKCD card and then click on Install.
-Add the XKCD Card to Lovelace:
+<img src = "https://github.com/Brianfit/images/blob/main/cardoption.jpg">
 
-Once installed, go to your Lovelace dashboard.
+Click on it. Click Done and you are. Kinda. See steps below to set up your automation. 
 
-Edit your dashboard and click on Add Card.
-
-Scroll down and select Manual (you might need to search for it).
-
-Use the following YAML to configure the card:
+If you prefer to roll your own, you can use the following YAML to add and configure the card to your liking:
 
 `type: 'custom:xkcd-card'`
 
-Save your changes.
+### Set up your automation
 
 > [!IMPORTANT]
 > <strong> If you just install the card, you'll only see the default comic. Every day. I mean it's a good one, but if you want to see it refresh, you need to create an automation! </strong>
 
-Good news is it's easy. When the card installs, it creates a file called xkcd.sh
+Good news is it's easy. When the card installs, it creates a bash file called xkcd.sh to fetch a new comic & alt text. 
 
 You'll want to run that every 24 hours to get the latest comic. First, open up your configuration.yaml and add the following code:
 
@@ -57,7 +48,6 @@ You'll want to run that every 24 hours to get the latest comic. First, open up y
 > [!IMPORTANT]
 > Go to the Developers menu, click on "Check Configuration" and "Restart Home Assistant" (Really restart it, don't just reload the YAML. You're creating a new entity, and you won't have access to it until you restart Home Assistant. If you're superstitious, go ahead and reboot, you'll feel better.)
 
-### Set up your automation
 
 Got to the Settings Menu and choose "Automations and Scenes"
 
