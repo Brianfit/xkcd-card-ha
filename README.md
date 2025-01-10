@@ -76,13 +76,13 @@ And set it up to run `shell_command.run_xkcd` once a day at 11:57 p.m. -- or any
 <img src = "https://github.com/Brianfit/images/blob/main/actionpopup.jpg" height="50%" width="50%">
 </a>
 
-If you've properly set up your shell commands in configuration.yaml AND restarted HA (you really restarted, didn't just reload the yaml, right?) you should see an autocomplete when you type "shell". In the example above, my configuration.yaml looked like this:
+If you've properly set up your shell command in configuration.yaml AND restarted HA (you really restarted, didn't just reload the yaml, right?) you should see an autocomplete when you type "shell". In the example above, which has multiple shell commands, my configuration.yaml looked like this:
 
 <a href="#">
 <img src = "https://github.com/Brianfit/images/blob/main/multishell.jpg">
 </a>
 
-NB: when you have more than one shell command, they need to be gathered under one header like the above. If you scatter them in your yaml the last one will be the only one loaded. 
+NB: If you have more than one shell command, they need to be gathered under one header like the above. If you scatter them in your yaml only one will be loaded. 
 
 
 <a href="#"><img src = "https://github.com/Brianfit/images/blob/main/automation.jpg" height="75%" width="75%"></a>
