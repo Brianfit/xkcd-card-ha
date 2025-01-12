@@ -46,8 +46,8 @@ Good news is it's easy. When the card installs, it creates a bash file called xk
 
 You'll want to run that every 24 hours to get the latest comic. First, open up your configuration.yaml and add the following code:
 ```
-        shell_command:
-          run_xkcd: "sh /config/www/community/xkcd-card-ha/xkcd.sh"
+shell_command:
+  run_xkcd: "sh /config/www/community/xkcd-card-ha/xkcd.sh"
 ```
 
 > [!IMPORTANT]
@@ -91,6 +91,20 @@ NB: If you have more than one shell command, they need to be gathered under one 
 Every day at the time you specify, the image xkcd.png and json data of the alt text and title will download to the /config/local/commmunity/xkcd-card-ha/ directory 
 And at midnight, since the date changes, the url of the image changes. And voila! A fresh giggle. Mouseover or touch/click the image to see the alt text. 
 
+Or for the lazy people here the automation:
+```
+alias: load new xkcd Comic
+description: ""
+triggers:
+  - trigger: time
+    at: "23:57:00"
+conditions: []
+actions:
+  - action: shell_command.run_xkcd
+    metadata: {}
+    data: {}
+mode: single
+```
 
 ## Credits
 
