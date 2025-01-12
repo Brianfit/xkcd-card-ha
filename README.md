@@ -91,7 +91,8 @@ NB: If you have more than one shell command, they need to be gathered under one 
 Every day at the time you specify, the image xkcd.png and json data of the alt text and title will download to the /config/local/commmunity/xkcd-card-ha/ directory 
 And at midnight, since the date changes, the url of the image changes. And voila! A fresh giggle. Mouseover or touch/click the image to see the alt text. 
 
-Or for the lazy people here the automation:
+And, if you prefer your automations written in yaml, ideally written over a giant bowl of chocolate-frosted sugar bombs:
+
 ```
 alias: load new xkcd Comic
 description: ""
