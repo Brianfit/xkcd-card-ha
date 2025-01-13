@@ -107,6 +107,30 @@ actions:
 mode: single
 ```
 
+### Set up your daily Notification with the new Comic 
+
+If you want the new comic daily as a notification create a Dashboard named Comic and make shure the URL is 
+```
+lovelance/comic 
+```
+Create this Automation with your prefered Device in it:
+```
+alias: XKCD Comic Daily Notification
+triggers:
+  - at: "07:00:00"
+    trigger: time
+conditions: []
+actions:
+  - data:
+      data:
+        image: /local/community/xkcd-card-ha/xkcd.png
+        notification_icon: mdi:comic
+        clickAction: /lovelace/comic
+      title: 🎨 New XKCD Comic
+    action: notify.yourdevice
+mode: single
+```
+
 ## Credits
 
 xkcd is created by Randall Munroe, and like this HACS Card the comic carries a Creative Commons BY NC license - meaning you are free to share provided attribution is made and the work is not used for commercial purposes. 
