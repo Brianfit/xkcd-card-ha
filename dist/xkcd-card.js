@@ -29,37 +29,49 @@ class XKCDcard extends HTMLElement {
             return `/local/community/xkcd-card-ha/xkcd.png?_ts=${this.lastFetchDate}`;
         }
     }
+    async updateContent() {
+        const imageUrl = this.getImageUrl();
+        const data = await this.fetchData();
 
- async updateContent() {
-        const imageUrl = this.getImageUrl(); // Call getImageUrl as a method of this class
-        const data = await this.fetchData(); // Fetch the JSON data
-
-        // Encode the ALT text as a URL parameter
-        const altTextParam = encodeURIComponent(data.alt_text);
-
-        // Update the content to include the image with the ALT text as a parameter
         this.content.innerHTML = `
             <style>
-                .alt-text {
-                    visibility: hidden;
-                    color: black;
+                /* Scoped to the XKCD card only */
+                ha-card .xkcd-alt-text {
+                    color: white;
+                    background-color: rgba(0, 0, 0, 0.8); /* Slight transparency */
                     text-align: center;
-                    padding: 5px 0;
-                    position: absolute;
-                    bottom: 10px;
-                    width: 100%;
-                    background: rgba(255, 255, 255, 0.7);
-                    transition: visibility 0.2s, opacity 0.2s linear;
+                    padding: 15px; /* Better spacing */
+                    margin-top: 10px;
+                    font-size: 16px; /* Improved readability */
+                    line-height: 1.6;
+                    border-radius: 8px; /* Rounded corners */
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
                 }
-
-                .image-container:hover .alt-text {
-                    visibility: visible;
-                    opacity: 1;
+                ha-card .xkcd-image-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                ha-card .xkcd-alt-text a {
+                    color: #add8e6; /* Light blue for links */
+                    text-decoration: none;
+                }
+                ha-card .xkcd-alt-text a:hover {
+                    text-decoration: underline;
                 }
             </style>
-            <div class="image-container" style="position: relative; cursor: pointer;">
-                <img src="${imageUrl}&alt_text=${altTextParam}" style="width: 100%;" onload="this.nextElementSibling.innerHTML = decodeURIComponent(this.src.split('alt_text=')[1])">
-                <div class="alt-text"></div>
+            <div class="xkcd-image-container">
+                <a href="${imageUrl}" target="_blank" title="Open image in a new window">
+                    <img src="${imageUrl}" style="width: 100%;" alt="xkcd comic">
+                </a>
+                <div class="xkcd-alt-text">
+                    Comic #${data.comic_number}
+                    <em>${data.date}</em><br>
+                    ${data.alt_text}<br><em><div style="font-size:x-small">
+                    <a href="${data.explain_url}" target="_blank">Explain</a></em></div>
+                </div>
             </div>
         `;
     }
