@@ -157,7 +157,7 @@ class XKCDcard extends HTMLElement {
                             <div style="font-size:x-small">
                                 <a href="${imageUrl}" target="_blank">Embiggen</a><br>   
                                 <a href="${data.explain_url}" target="_blank">Explain</a><br>
-                                <a href="https://buymeacoffee.com/brianfit">☕️</a>
+                                 <a href="https://buymeacoffee.com/brianfit" target="_blank">☕️</a>
                             </div>
                         </em>
                     </div>
