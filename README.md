@@ -4,11 +4,16 @@ This pulls the latest awesome xkcd comic into your Home Assistant dashboard. New
 
 Version 2.0 adds a caption box with Title, comic number and date, and alt-text (tx, @jonathan-chin!), plus an "Embiggen" link for those days when Randall goes multi-panel. Squints should not have to squint. There's also an "Explain" link which takes you to the relevant "Explain xkcd" wiki entry for when he wanders out of your wheelhouse. 
 
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Brian+Fitzgerald&repository=https%3A%2F%2Fgithub.com%2FBrianfit%2Fxkcd-card-ha&category=Lovelace)
+
+> [!IMPORTANT]
+> <strong> If you just install the card, you'll only see the default comic. Every day. I mean it's a good one, but if you want to see it refresh, you need to create an automation! (It's easy though! See 🦶step by 🦶 step below ⬇️) </strong>
+
 <a href="#">
 <img src = "https://github.com/Brianfit/images/blob/main/xkcdhomeeg.jpg">
 </a>
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Brian+Fitzgerald&repository=https%3A%2F%2Fgithub.com%2FBrianfit%2Fxkcd-card-ha&category=Lovelace)
+
 
 "Why can't I just grab the image in a picture entity from the RSS feed" you ask?  Because browsers cache images, m'geek. It's normally a feature, but when you want to point to a file that gets refreshed regularly, it's a bug. We need to trick the browser into thinking it hasn't seen the url it's fetching the comic from, and we do that with this nifty trick, built right into the card:
 
@@ -45,10 +50,7 @@ If you prefer to roll your own, you can use the following YAML to add and config
 
 ### Set up your automation
 
-> [!IMPORTANT]
-> <strong> If you just install the card, you'll only see the default comic. Every day. I mean it's a good one, but if you want to see it refresh, you need to create an automation! </strong>
-
-Good news is it's easy. When the card installs, it creates a bash file called xkcd.sh to fetch a new comic & alt text. 
+When the card installs, it creates a bash file called xkcd.sh to fetch a new comic & alt text. 
 
 You'll want to run that every 24 hours to get the latest comic. First, open up your configuration.yaml and add the following code:
 ```
