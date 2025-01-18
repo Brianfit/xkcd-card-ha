@@ -122,7 +122,7 @@ class XKCDcard extends HTMLElement {
                         text-align: center;
                         padding: 15px;
                         margin-top: 10px;
-                        font-size: 16px;
+                        font-size: 12px;
                         line-height: 1.6;
                         border-radius: 8px;
                         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -146,18 +146,23 @@ class XKCDcard extends HTMLElement {
                         height: auto;
                         display: block;
                     }
+                    ha-card .smoll {
+                    color: #add8e6;
+                    font-size: x-small;
+                    }
                 </style>
                 <div class="xkcd-image-container">
                     <img src="${imageUrl}" alt="xkcd comic" loading="lazy">
                     <div class="xkcd-alt-text">
+                        <strong>${data.title}</strong><div class="smoll">
                         Comic #${data.comic_number}
-                        <em>${data.date}</em><br>
+                        <em>${data.date}</em></div>
                         ${data.alt_text}<br>
                         <em>
-                            <div style="font-size:x-small">
-                                <a href="${imageUrl}" target="_blank">Embiggen</a><br>   
-                                <a href="${data.explain_url}" target="_blank">Explain</a><br>
-                                 <a href="https://buymeacoffee.com/brianfit" target="_blank">☕️</a>
+                            <div class="smoll">
+                                <a href="${imageUrl}" target="_blank">Embiggen</a>&nbsp;&nbsp;&nbsp;           <a href="https://buymeacoffee.com/brianfit" target="_blank">☕️</a>&nbsp;&nbsp;&nbsp;    
+                                <a href="${data.explain_url}" target="_blank">Explain</a>
+                          
                             </div>
                         </em>
                     </div>
