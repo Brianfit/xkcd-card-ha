@@ -2,7 +2,18 @@
 
 This pulls the latest awesome xkcd comic into your Home Assistant dashboard. New comics are published every Monday, Wednesday, and Friday. On other days, the card pulls a random comic from the archive. 
 
+Version 2.0 adds a caption box with Title, comic number and date, and alt-text (tx, @jonathan-chin!), plus an "Embiggen" link for those days when Randall goes multi-panel. Squints should not have to squint. There's also an "Explain" link which takes you to the relevant "Explain xkcd" wiki entry for when he wanders out of your wheelhouse. 
+
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Brian+Fitzgerald&repository=https%3A%2F%2Fgithub.com%2FBrianfit%2Fxkcd-card-ha&category=Lovelace)
+
+> [!IMPORTANT]
+> <strong> If you just install the card, you'll only see the default comic. Every day. I mean it's a good one, but if you want to see it refresh, you need to create an automation! (It's easy though! See 🦶step by 🦶 step below ⬇️) </strong>
+
+<a href="#">
+<img src = "https://github.com/Brianfit/images/blob/main/xkcdhomeeg.jpg">
+</a>
+
+
 
 "Why can't I just grab the image in a picture entity from the RSS feed" you ask?  Because browsers cache images, m'geek. It's normally a feature, but when you want to point to a file that gets refreshed regularly, it's a bug. We need to trick the browser into thinking it hasn't seen the url it's fetching the comic from, and we do that with this nifty trick, built right into the card:
 
@@ -39,10 +50,7 @@ If you prefer to roll your own, you can use the following YAML to add and config
 
 ### Set up your automation
 
-> [!IMPORTANT]
-> <strong> If you just install the card, you'll only see the default comic. Every day. I mean it's a good one, but if you want to see it refresh, you need to create an automation! </strong>
-
-Good news is it's easy. When the card installs, it creates a bash file called xkcd.sh to fetch a new comic & alt text. 
+When the card installs, it creates a bash file called xkcd.sh to fetch a new comic & alt text. 
 
 You'll want to run that every 24 hours to get the latest comic. First, open up your configuration.yaml and add the following code:
 ```
@@ -51,7 +59,7 @@ shell_command:
 ```
 
 > [!IMPORTANT]
-> Go to the Developers menu, click on "Check Configuration" and "Restart Home Assistant" (Really restart it, don't just reload the YAML. You're creating a new entity, and you won't have access to it until you restart Home Assistant. If you're superstitious, go ahead and reboot, you'll feel better.)
+> Go to the Developers menu, click on "Check Configuration" and "Restart Home Assistant" (Really restart it, don't just reload the YAML. You're creating a new entity, and you won't have access to it until you restart Home Assistant. If you're 👻 superstitious 👻, go ahead and reboot, you'll feel better.)
 
 
 Got to the Settings Menu and choose "Automations and Scenes"
@@ -88,10 +96,11 @@ NB: If you have more than one shell command, they need to be gathered under one 
 <a href="#"><img src = "https://github.com/Brianfit/images/blob/main/automation.jpg" height="75%" width="75%"></a>
 
 
-Every day at the time you specify, the image xkcd.png and json data of the alt text and title will download to the /config/local/commmunity/xkcd-card-ha/ directory 
-And at midnight, since the date changes, the url of the image changes. And voila! A fresh giggle. Mouseover or touch/click the image to see the alt text. 
+Every day at the time you specify, the image xkcd.png and a json data file of the alt text, the title, the safe title, and the comic date will download to the /config/local/commmunity/xkcd-card-ha/ directory 
 
-And, if you prefer your automations written in yaml, ideally written over a giant bowl of chocolate-frosted sugar bombs:
+And at midnight, since the date changes, the url of the image changes. And voila! A fresh giggle. Mouseover or touch/click the image to see the alt text in version 1. In version 2, it's pulled into the caption box for easier reading.  
+
+And, if automations written in yaml are how you roll, here's another way to do all that (tx, @Andurilll!):
 
 ```
 alias: load new xkcd Comic
