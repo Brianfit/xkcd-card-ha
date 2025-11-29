@@ -63,12 +63,11 @@ class XKCDcard extends HTMLElement {
         return new Promise((resolve) => {
             this.debounceTimeout = setTimeout(async () => {
                 try {
-                    if (!this.lastData) {
-                        const response = await fetch('/local/community/xkcd-card-ha/xkcd_data.json', {
-                            cache: 'no-cache'
-                        });
-                        this.lastData = await response.json();
-                    }
+                    const timestamp = new Date().getTime();
+                    const response = await fetch(`/local/community/xkcd-card-ha/xkcd_data.json?_ts=${timestamp}`, {
+                        cache: 'no-cache'
+                    });
+                    this.lastData = await response.json();
                     resolve(this.lastData);
                 } catch (error) {
                     console.error('Failed to fetch XKCD data:', error);
