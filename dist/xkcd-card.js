@@ -247,7 +247,9 @@ class XKCDcard extends HTMLElement {
 }
 
 // Register the custom element
-customElements.define('xkcd-card', XKCDcard);
+if (!customElements.get('xkcd-card')) {
+    customElements.define('xkcd-card', XKCDcard);
+}
 
 // Register card with Home Assistant
 window.customCards = window.customCards || [];
