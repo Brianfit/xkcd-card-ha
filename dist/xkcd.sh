@@ -14,7 +14,7 @@ save_directory="/config/www/community/xkcd-card-ha/"
 # track latest comic number for a full range of random choices
 LATEST_COMIC_NUMBER_FILE="latest_comic_number.txt"
 LATEST_COMIC_NUMBER=$(cat ${save_directory}${LATEST_COMIC_NUMBER_FILE} 2> /dev/null)
-[ $LATEST_COMIC_NUMBER -eq $LATEST_COMIC_NUMBER 2>/dev/null] || LATEST_COMIC_NUMBER=3200
+[ $LATEST_COMIC_NUMBER -eq $LATEST_COMIC_NUMBER 2>/dev/null ] || LATEST_COMIC_NUMBER=3200
 
 # Determine the day of the week
 day_of_week=$(date +%u) # +%u gives a numeric representation of the day of the week (1=Monday, ..., 7=Sunday)
