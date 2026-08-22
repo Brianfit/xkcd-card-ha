@@ -16,18 +16,25 @@ LATEST_COMIC_NUMBER_FILE="latest_comic_number.txt"
 LATEST_COMIC_NUMBER=$(cat ${save_directory}${LATEST_COMIC_NUMBER_FILE} 2> /dev/null)
 [ $LATEST_COMIC_NUMBER -eq $LATEST_COMIC_NUMBER 2>/dev/null ] || LATEST_COMIC_NUMBER=3200
 
+if [[ -z "$1" ]]; then
+    ARG="none"
+else
+    ARG="$1"
+fi
+
 # Determine the day of the week
 day_of_week=$(date +%u) # +%u gives a numeric representation of the day of the week (1=Monday, ..., 7=Sunday)
+[ "$ARG" == "latest" ] && day_of_week=1
 
 # Test mode is triggered by a numeric argument to this shell script
-if [ ! -z "$1" ] && [ $1 -eq $1 2>/dev/null ]; then
+if [[ $ARG -eq $ARG 2>/dev/null ]]; then
     # get specific numbered comic (mostly for testing the globbing issue)
-    test_comic="$1"
+    test_comic="$ARG"
     url="https://xkcd.com/${test_comic}/info.0.json"
     explainurl="https://www.explainxkcd.com/wiki/index.php/${test_comic}:"
 
 # Define the URL based on the day of the week, or if 'random' is provided as an argument
-elif [[ "$day_of_week" == "2" || "$day_of_week" == "4" || "$day_of_week" == "6" || "$day_of_week" == "7" || "$1" == "random" ]]; then
+elif [[ "$day_of_week" == "2" || "$day_of_week" == "4" || "$day_of_week" == "6" || "$day_of_week" == "7" || "$ARG" == "random" ]]; then
     # Generate a random comic number between 1 and $LATEST_COMIC_NUMBER
     random_comic=$((1 + RANDOM % $LATEST_COMIC_NUMBER))
     url="https://xkcd.com/${random_comic}/info.0.json"
