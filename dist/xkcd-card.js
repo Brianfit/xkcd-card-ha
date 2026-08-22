@@ -4,6 +4,7 @@ class XKCDcard extends HTMLElement {
     content;
     lastFetchDate = null;
     lastImageUrl = null;
+    lastLargeImageUrl = null;
     lastData = null;
     updateTimer = null;
     debounceTimeout = null;
@@ -88,6 +89,12 @@ class XKCDcard extends HTMLElement {
         this.lastImageUrl = `/local/community/xkcd-card-ha/xkcd.png?_ts=${timestamp}`;
         return this.lastImageUrl;
     }
+    // Get large image URL with caching
+    getLargeImageUrl() {
+        const timestamp = new Date().getTime();
+        this.lastLargeImageUrl = `/local/community/xkcd-card-ha/xkcd_large.png?_ts=${timestamp}`;
+        return this.lastLargeImageUrl;
+    }
 
     // Optimized content update with state checking
     async updateContent() {
@@ -98,6 +105,7 @@ class XKCDcard extends HTMLElement {
 
         this.updateTimer = setTimeout(async () => {
             const imageUrl = this.getImageUrl();
+            const largeImageUrl = this.getLargeImageUrl();
             const data = await this.fetchDataDebounced();
 
             if (!data) return;
@@ -148,7 +156,7 @@ class XKCDcard extends HTMLElement {
                         top: 0; 
                         width: 100%; 
                         height: 100%; 
-                        overflow: auto; 
+                        overflow: auto;
                         background-color: rgba(0, 0, 0, 0.8); 
                     }
                     .modal-content {
@@ -159,6 +167,7 @@ class XKCDcard extends HTMLElement {
                     .modal-content img {
                         width: 100%;
                         height: auto;
+                        overflow: auto;
                     }
                     .close {
                         position: absolute;
@@ -192,7 +201,7 @@ class XKCDcard extends HTMLElement {
                 <div id="xkcd-modal" class="modal">
                     <span id="close-modal" class="close">&times;</span>
                     <div class="modal-content">
-                        <img src="${imageUrl}" alt="xkcd comic enlarged">
+                        <img src="${largeImageUrl}" alt="xkcd comic enlarged">
                     </div>
                 </div>
             `;
