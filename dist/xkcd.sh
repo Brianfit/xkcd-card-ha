@@ -49,6 +49,7 @@ data=$(curl -s $url)
 
 # Extract the image URL, title, alt text, comic number, and date
 image_url=$(echo $data | jq -r '.img')
+link_url=$(echo $data | jq -r '.link')
 title=$(echo $data | jq -r '.title')
 safe_title=$(echo $data | jq -r '.safe_title')
 alt_text=$(echo $data | jq -r '.alt')
@@ -59,22 +60,34 @@ comic_date=$(echo $data | jq -r '.year')"-"$(echo $data | jq -r '.month')"-"$(ec
 image_name=$(basename $image_url)
 curl -s $image_url -o "${save_directory}xkcd.png"
 
+# Download the large image (if it exists), otherwise copy small image
+if [[ -z "${link_url}" ]]; then
+    # copy small image to large
+    cp "${save_directory}xkcd.png" "${save_directory}xkcd_large.png"
+else
+    # get large image
+    large_image_url=$(curl -s $link_url |  sed -e 's/.*src="//g' -e 's/".*//g')
+    curl -s $large_image_url -o "${save_directory}xkcd_large.png"
+fi
+
 # Complete the explain XKCD URL with safe_title
 explainurl="${explainurl}"_"${safe_title}"
 
 # Local path to the image
 local_image_path="${save_directory}xkcd.png"
+local_large_image_path="${save_directory}xkcd_large.png"
 
 # Create a JSON object
 json_output=$(jq -n \
                   --arg img "$local_image_path" \
+                  --arg large_img "$local_large_image_path" \
                   --arg title "$title" \
                   --arg alt "$alt_text" \
                   --arg num "$comic_number" \
                   --arg safe "$safe_title" \
                   --arg date "$comic_date" \
                   --arg exp "$explainurl" \
-                  '{image_url: $img, title: $title, alt_text: $alt, explain_url: $exp, comic_number: $num, date: $date}')
+                  '{image_url: $img, large_image_url: $large_img, title: $title, alt_text: $alt, explain_url: $exp, comic_number: $num, date: $date}')
 
 # Save the JSON to a file
 echo $json_output > "${save_directory}xkcd_data.json"
@@ -84,4 +97,5 @@ echo $json_output > "${save_directory}xkcd_data.json"
 
 # Output the saved paths
 echo "Image saved to: $local_image_path"
+echo "Large image saved to: $local_large_image_path"
 echo "JSON saved to: ${save_directory}xkcd_data.json"
