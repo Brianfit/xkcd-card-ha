@@ -139,7 +139,7 @@ class XKCDcard extends HTMLElement {
                         text-decoration: underline;
                     }
                     ha-card img {
-                        width: 100%;
+                        width: auto;
                         height: auto;
                         display: block;
                     }
