@@ -139,7 +139,7 @@ class XKCDcard extends HTMLElement {
                         text-decoration: underline;
                     }
                     ha-card img {
-                        width: auto;
+                        width: 100%;
                         height: auto;
                         display: block;
                     }
@@ -165,7 +165,7 @@ class XKCDcard extends HTMLElement {
                         width: 50%; /* 50% larger size */
                     }
                     .modal-content img {
-                        width: 100%;
+                        width: auto;
                         height: auto;
                         overflow: auto;
                     }
