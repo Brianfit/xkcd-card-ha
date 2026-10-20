@@ -27,7 +27,7 @@ day_of_week=$(date +%u) # +%u gives a numeric representation of the day of the w
 [ "$ARG" == "latest" ] && day_of_week=1
 
 # Test mode is triggered by a numeric argument to this shell script
-if [[ $ARG -eq $ARG 2>/dev/null ]]; then
+if [[ "$ARG" =~ ^[0-9]+$ ]]; then
     # get specific numbered comic (mostly for testing the globbing issue)
     test_comic="$ARG"
     url="https://xkcd.com/${test_comic}/info.0.json"
@@ -48,13 +48,13 @@ fi
 data=$(curl -s $url)
 
 # Extract the image URL, title, alt text, comic number, and date
-image_url=$(echo $data | jq -r '.img')
-link_url=$(echo $data | jq -r '.link')
-title=$(echo $data | jq -r '.title')
-safe_title=$(echo $data | jq -r '.safe_title')
-alt_text=$(echo $data | jq -r '.alt')
-comic_number=$(echo $data | jq -r '.num')
-comic_date=$(echo $data | jq -r '.year')"-"$(echo $data | jq -r '.month')"-"$(echo $data | jq -r '.day')
+image_url=$(echo "$data" | jq -r '.img')
+link_url=$(echo "$data" | jq -r '.link')
+title=$(echo "$data" | jq -r '.title')
+safe_title=$(echo "$data" | jq -r '.safe_title')
+alt_text=$(echo "$data" | jq -r '.alt')
+comic_number=$(echo "$data" | jq -r '.num')
+comic_date=$(echo "$data" | jq -r '.year')"-"$(echo "$data" | jq -r '.month')"-"$(echo "$data" | jq -r '.day')
 
 # Download the image
 image_name=$(basename $image_url)
@@ -66,8 +66,11 @@ if [[ -z "${link_url}" ]]; then
     cp "${save_directory}xkcd.png" "${save_directory}xkcd_large.png"
 else
     # get large image
-    large_image_url=$(curl -s $link_url |  sed -e 's/.*src="//g' -e 's/".*//g')
-    curl -s $large_image_url -o "${save_directory}xkcd_large.png"
+    large_image_url=$(curl -s "$link_url" | grep -o 'src="[^"]*\.png"' | head -1 | sed -e 's/^src="//' -e 's/"$//')
+    [[ "$large_image_url" == //* ]] && large_image_url="https:${large_image_url}"
+    if [[ -z "$large_image_url" ]] || ! curl -sf "$large_image_url" -o "${save_directory}xkcd_large.png"; then
+        cp "${save_directory}xkcd.png" "${save_directory}xkcd_large.png"
+    fi
 fi
 
 # Complete the explain XKCD URL with safe_title
